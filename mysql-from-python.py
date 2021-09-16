@@ -11,6 +11,12 @@ connection = pymysql.connect(host='localhost',
 
 try:
     with connection.cursor() as cursor:
-        cursor.execute("CREATE TABLE Friends (name char(20), age int, DOB datetime)")
+        rows = [(23, 'Bob'),
+                (24, 'Jim'),
+                (25, 'Fred')]
+        cursor.executemany("UPDATE Friends SET age = %s where name = %s;",
+                        rows)
+                            
+        connection.commit()
 finally:
     connection.close()
