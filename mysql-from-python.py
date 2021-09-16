@@ -11,8 +11,6 @@ connection = pymysql.connect(host='localhost',
 
 try:
     with connection.cursor() as cursor:
-        cursor.execute("Friends (name char(20), age int, DOB datetime)")
-        # Note that the above will still display a warning (not error) if the
-        # table already exists
+        cursor.execute("CREATE TABLE Friends (name char(20), age int, DOB datetime)")
 finally:
     connection.close()
